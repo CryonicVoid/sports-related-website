@@ -5,21 +5,134 @@
   <base href="/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="Description" content="Demonstration for sports-related-website">
+  <meta name="Description" content="Crimson Hawks Athletics — Official Sports Site">
 
+  <!-- Futuristic typography: Barlow Condensed (display/nav) + Share Tech Mono (data/numbers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Component registrations -->
+  <script type="module" src="./interactive-icon-image.js"></script>
+  <script type="module" src="./navigation-arrow.js"></script>
+  <script type="module" src="./linked-buttons.js"></script>
+  <script type="module" src="./sub-tab-dropdown.js"></script>
+  <script type="module" src="./pop-up-message.js"></script>
+  <script type="module" src="./time-display-calendar.js"></script>
+  <script type="module" src="./calendar-date-card.js"></script>
+  <script type="module" src="./event-card.js"></script>
+  <script type="module" src="./scheduling-calendar.js"></script>
+  <script type="module" src="./sport-site-top-bar.js"></script>
+  <script type="module" src="./sport-site-bottom-bar.js"></script>
+  <script type="module" src="./home-page.js"></script>
+  <script type="module" src="./events-page.js"></script>
+  <script type="module" src="./players-page.js"></script>
   <script type="module" src="./sports-related-website.js"></script>
-  <script type="module" src="./website-top-bar.js"></script>
-  <script type="module" src="./website-bottom-bar.js"></script>
-  <title>sports-related-website</title>
+
+  <title>Crimson Hawks Athletics</title>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #03080f;
+      /* Smooth scrolling for any anchor jumps */
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar styling for the futuristic dark theme */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #02060f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1a3a5c;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2a5a8c;
+    }
+
+    /*
+     * App shell layout:
+     *   Row 1 — top bar (auto = shrinks to its own height, fixed-positioned internally)
+     *   Row 2 — page content (1fr = takes all remaining space)
+     *   Row 3 — bottom bar (auto)
+     *
+     * The top bar renders a 64px spacer div after its fixed bar so
+     * the page content row starts below the bar naturally.
+     */
+    .app {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    sports-related-website {
+      /* Critical: grid children must not overflow in block direction */
+      min-height: 0;
+      overflow-y: auto;
+    }
+
+    /*
+     * Route-change event relay:
+     * The top bar and bottom bar fire `route-change` events.
+     * sports-related-website sits in the middle row and listens on itself,
+     * but the top bar and bottom bar are siblings — not children — so their
+     * events won't bubble into sports-related-website's addEventListener.
+     *
+     * We solve this by attaching a single document-level listener that
+     * forwards route-change to the router element.
+     */
+  </style>
+
+  <script>
+    // Global route-change relay: forwards events from top/bottom bars
+    // (siblings of sports-related-website) into the router element.
+    document.addEventListener("route-change", (e) => {
+      const router = document.querySelector("sports-related-website");
+      const topBar = document.querySelector("sport-site-top-bar");
+      if (!router) return;
+
+      const path = e.detail?.path;
+      if (!path || path === router.route) return;
+
+      router.route = path;
+      window.history.pushState({ path }, "", path);
+
+      // Sync top bar's active indicator
+      if (topBar) {
+        topBar.activeRoute = path;
+      }
+
+      // Scroll page content back to top on navigation
+      const mainEl = document.querySelector("sports-related-website");
+      if (mainEl) mainEl.scrollTop = 0;
+    });
+
+    // Sync top bar on browser back/forward
+    window.addEventListener("popstate", () => {
+      const router = document.querySelector("sports-related-website");
+      const topBar = document.querySelector("sport-site-top-bar");
+      const path = window.location.pathname || "/";
+      if (router) router.route = path;
+      if (topBar) topBar.activeRoute = path;
+    });
+  </script>
 </head>
 
 <body>
-  <div id="demo">
-    <website-top-bar></website-top-bar>
-    <h1>sports-related-website</h1>
-    <!-- this is going to do whatever the tag's defaults are -->
+  <div class="app">
+    <sport-site-top-bar active-route="/"></sport-site-top-bar>
     <sports-related-website></sports-related-website>
-    <website-bottom-bar></website-bottom-bar>
+    <sport-site-bottom-bar></sport-site-bottom-bar>
   </div>
 </body>
 </html>

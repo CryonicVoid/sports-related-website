@@ -7,15 +7,15 @@ import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
- * `website-bottom-bar`
+ * `website-top-bar`
  * 
  * @demo index.html
- * @element website-bottom-bar
+ * @element website-top-bar
  */
-export class WebsiteBottomBar extends DDDSuper(I18NMixin(LitElement)) {
+export class WebsiteTopBar extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "website-bottom-bar";
+    return "website-top-bar";
   }
 
   constructor() {
@@ -34,13 +34,13 @@ export class WebsiteBottomBar extends DDDSuper(I18NMixin(LitElement)) {
   static get styles() {
     return [super.styles,
     css`
-       :host {
+  :host {
     display: block;     /* THIS is the critical line */
   }
 
   .bar {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 60px;
@@ -53,11 +53,11 @@ export class WebsiteBottomBar extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-        <div class='bar'>
+     <div class='bar'>
 
         </div>
     `;
   }
 }
 
-globalThis.customElements.define(WebsiteBottomBar.tag, WebsiteBottomBar);
+globalThis.customElements.define(WebsiteTopBar.tag, WebsiteTopBar);
