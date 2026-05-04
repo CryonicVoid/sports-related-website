@@ -38,8 +38,8 @@
 
     html, body {
       height: 100%;
-      margin: var(--ddd-spacing-0);
-      padding: var(--ddd-spacing-0);
+      margin: 0;
+      padding: 0;
       background: #03080f;
       /* Smooth scrolling for any anchor jumps */
       scroll-behavior: smooth;
@@ -54,7 +54,7 @@
     }
     ::-webkit-scrollbar-thumb {
       background: #1a3a5c;
-      border-radius: var(--ddd-radius-xs);
+      border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #2a5a8c;

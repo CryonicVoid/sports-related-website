@@ -40,12 +40,12 @@ export class WebsiteTopBar extends DDDSuper(I18NMixin(LitElement)) {
 
   .bar {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: var(--ddd-spacing-0);
+    left: var(--ddd-spacing-0);
     width: 100%;
     height: 60px;
     background: red;
-    color: white;
+    color: var(--ddd-theme-default-white);
   }
     `];
   }

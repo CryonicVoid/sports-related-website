@@ -43,7 +43,7 @@ export class TimeDisplayCalendar extends DDDSuper(LitElement) {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: var(--ddd-spacing-4);
+          gap: 16px;
         }
 
         .month-label {

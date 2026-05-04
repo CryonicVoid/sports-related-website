@@ -62,7 +62,7 @@ export class EventCard extends DDDSuper(LitElement) {
         .card {
           background: linear-gradient(135deg, #080f1c 0%, #0c1828 100%);
           border: 1px solid rgba(100,180,255,0.15);
-          border-radius: var(--ddd-radius-sm);
+          border-radius: 6px;
           overflow: hidden;
           transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
           position: relative;
@@ -78,8 +78,8 @@ export class EventCard extends DDDSuper(LitElement) {
         .card::before {
           content: "";
           position: absolute;
-          top: var(--ddd-spacing-0);
-          left: var(--ddd-spacing-0);
+          top: 0;
+          left: 0;
           width: 3px;
           height: 100%;
         }
@@ -93,7 +93,7 @@ export class EventCard extends DDDSuper(LitElement) {
           align-items: flex-start;
           justify-content: space-between;
           padding: 16px 20px 12px 22px;
-          gap: var(--ddd-spacing-3);
+          gap: 12px;
         }
 
         .date-col {
@@ -131,7 +131,7 @@ export class EventCard extends DDDSuper(LitElement) {
           width: 1px;
           background: rgba(100,180,255,0.1);
           align-self: stretch;
-          margin: var(--ddd-spacing-0) 4px;
+          margin: 0 4px;
         }
 
         .info {
@@ -152,7 +152,7 @@ export class EventCard extends DDDSuper(LitElement) {
           letter-spacing: 0.12em;
           text-transform: uppercase;
           padding: 2px 8px;
-          border-radius: var(--ddd-radius-xs);
+          border-radius: 2px;
         }
 
         .badge.home {
@@ -185,7 +185,7 @@ export class EventCard extends DDDSuper(LitElement) {
           font-weight: 700;
           color: #d0e8ff;
           letter-spacing: 0.03em;
-          margin: var(--ddd-spacing-0) 0 4px 0;
+          margin: 0 0 4px 0;
           text-transform: uppercase;
         }
 
@@ -196,14 +196,14 @@ export class EventCard extends DDDSuper(LitElement) {
         }
 
         .body {
-          padding: var(--ddd-spacing-0) 20px 16px 22px;
+          padding: 0 20px 16px 22px;
         }
 
         .description {
           font-size: 0.82rem;
           color: #5d8aaa;
           line-height: 1.55;
-          margin: var(--ddd-spacing-0) 0 12px 0;
+          margin: 0 0 12px 0;
         }
 
         .more-btn {
@@ -216,7 +216,7 @@ export class EventCard extends DDDSuper(LitElement) {
           letter-spacing: 0.1em;
           text-transform: uppercase;
           padding: 5px 14px;
-          border-radius: var(--ddd-radius-xs);
+          border-radius: 2px;
           cursor: pointer;
           transition: background 0.15s, color 0.15s, border-color 0.15s;
         }

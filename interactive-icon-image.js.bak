@@ -68,8 +68,8 @@ export class InteractiveIconImage extends DDDSuper(LitElement) {
 
         img.hover-img {
           position: absolute;
-          top: var(--ddd-spacing-0);
-          left: var(--ddd-spacing-0);
+          top: 0;
+          left: 0;
           opacity: 0;
         }
 
